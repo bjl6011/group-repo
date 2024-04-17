@@ -14,7 +14,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     public void addInterceptors(InterceptorRegistry registry) {
         //登录和注册接口不拦截
-        // adadad
+        // adadadwerf
+        // asfwaw
         registry.addInterceptor(loginInterceptor).excludePathPatterns("/user/login","/user/register","/user/token","/advertisingspace");
     }
 }

@@ -37,11 +37,13 @@ public class ArticleController {
         return Result.success();
     }
 
+
     @GetMapping("/detail")
     public Result<Article> detail(Integer id){
         Article article=articleService.findById(id);
         return Result.success(article);
     }
+
 
     @DeleteMapping
     public Result delete(Integer id){

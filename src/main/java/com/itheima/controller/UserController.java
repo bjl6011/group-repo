@@ -30,6 +30,7 @@ public class UserController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    // 注册
     @PostMapping("/register")
     public Result register(@RequestBody loginDTO loginDTO){
 
@@ -43,6 +44,7 @@ public class UserController {
             }
     }
 
+    // 登录
     @PostMapping("/login")
     public Result login(@RequestBody loginDTO loginDTO){
 

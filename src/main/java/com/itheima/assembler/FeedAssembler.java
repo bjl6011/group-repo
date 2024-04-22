@@ -13,7 +13,6 @@ public class FeedAssembler {
 
     public FeedVO assembler(Feed feed, User user,boolean hasLike){
         FeedVO feedVO=new FeedVO();
-
         List<String> images = Arrays.asList(feed.getImages().split(","));
         String cover;
         if(images.size()==1)

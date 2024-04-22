@@ -16,7 +16,6 @@ public class ArticleController {
     @Autowired
     ArticleService articleService;
 
-
     @PostMapping
     public Result add(@RequestBody @Validated Article article){
         articleService.add(article);

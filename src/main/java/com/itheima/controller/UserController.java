@@ -69,7 +69,6 @@ public class UserController {
             }
             else
                 return Result.error2("密码错误");
-
         }
     }
 

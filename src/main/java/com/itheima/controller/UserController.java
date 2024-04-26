@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/user")
 @Validated
+@CrossOrigin
 public class UserController {
 
     @Autowired

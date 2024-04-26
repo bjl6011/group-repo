@@ -37,4 +37,6 @@ public class User {
     private String userPic;//用户头像地址
     private LocalDateTime createTime;//创建时间
     private LocalDateTime updateTime;//更新时间
+
+    private String sex;
 }

@@ -1,13 +1,13 @@
 package com.itheima.controller;
 
 import com.itheima.DTO.loginDTO;
+import com.itheima.entity.msgVO;
 import com.itheima.pojo.Result;
 import com.itheima.pojo.User;
 import com.itheima.service.UserService;
 import com.itheima.utils.JwtUtil;
 import com.itheima.utils.Md5Util;
 import com.itheima.utils.ThreadLocalUtil;
-import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -17,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -73,9 +74,9 @@ public class UserController {
         }
     }
 
+    // 用户信息
     @GetMapping("/info")
     public Result<User> userinfo(){
-
         Map<String,Object> map = ThreadLocalUtil.get();
         String username=(String)map.get("username");
         User user=userService.findByUserName(username);
@@ -97,6 +98,7 @@ public class UserController {
         return Result.success();
     }
 
+    // 设置头像
     @PatchMapping("/updateAvatar")
     public Result updateAvatar(@RequestParam @URL String avatarUrl){
         userService.updateAvatar(avatarUrl);
@@ -129,4 +131,15 @@ public class UserController {
         operations.getOperations().delete(token);
         return Result.success();
     }
+
+    @GetMapping("/msg")
+    public Result<List<msgVO>> getUserLikes() {
+
+        List<msgVO> msgVOS = userService.getUserMsg();
+
+        return Result.success(msgVOS);
+    }
+
+
+
 }

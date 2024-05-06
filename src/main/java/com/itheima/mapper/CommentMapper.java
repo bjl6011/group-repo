@@ -9,8 +9,12 @@ import java.util.List;
 
 @Mapper
 public interface CommentMapper {
-    @Select("select *from comment where commentable_id=#{id} and commentable_type='feed'")
+    @Select("select *from sys.comment where commentable_id=#{id} and commentable_type='feed'")
     List<Comment> getFeedComments(Integer id);
+
+    @Select("select * from sys.comment where target_id = #{id} and commentable_type = 'feed'")
+    List<Comment> getFeedCommentByTargetId(Integer id);
+
 
     @Select("select *from comment where commentable_id=#{id} and commentable_type='new'")
     List<Comment> getNewComments(Integer id);

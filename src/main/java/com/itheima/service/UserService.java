@@ -1,7 +1,9 @@
 package com.itheima.service;
 
+import com.itheima.entity.msgVO;
 import com.itheima.pojo.User;
-import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 public interface UserService  {
     User findByUserName(String username);
@@ -13,4 +15,6 @@ public interface UserService  {
     void updateAvatar(String avatarUrl);
 
     void updatePwd(String newPwd);
+
+    List<msgVO> getUserMsg();
 }

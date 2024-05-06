@@ -50,4 +50,12 @@ public class CommentServiceImpl implements CommentService {
 
         return commentVos;
     }
+
+    @Override
+    public List<Comment> getFeedCommentByTargetId(Integer id) {
+
+        List<Comment> comments=commentMapper.getFeedCommentByTargetId(id);
+        return comments;
+    }
+
 }

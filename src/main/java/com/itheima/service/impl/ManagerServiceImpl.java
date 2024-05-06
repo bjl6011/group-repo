@@ -1,6 +1,7 @@
 package com.itheima.service.impl;
 
 import com.itheima.mapper.ManagerMapper;
+import com.itheima.mapper.UserMapper;
 import com.itheima.pojo.Manager;
 import com.itheima.pojo.User;
 import com.itheima.service.ManagerService;
@@ -14,6 +15,9 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Autowired
     ManagerMapper managerMapper;
+
+    @Autowired
+    UserMapper userMapper;
 
     @Override
     public Manager fingByManagerName(String managerName) {
@@ -39,7 +43,7 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     public List<User> details(Integer id){
-        return managerMapper.details(id);
+        return managerMapper.detailUserMsg(id);
     }
 
     public Integer selectNum(String optionSelect,String optionValue){

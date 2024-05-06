@@ -1,6 +1,7 @@
 package com.itheima.controller;
 
 import com.itheima.DTO.loginDTO;
+import com.itheima.mapper.UserMapper;
 import com.itheima.pojo.*;
 import com.itheima.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ import java.util.*;
 public class ManagerController {
     @Autowired
     private ManagerService managerService;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -42,7 +46,8 @@ public class ManagerController {
     }
 
     // 用户信息列表
-    @GetMapping("/initialize")//初始化界面
+    // 初始化界面
+    @GetMapping("/initialize")
     public Map<String,Object> initialize(@RequestParam("pageNumber") Integer pageNumber,
                                          @RequestParam("pageSize") Integer pageSize){
         pageNumber=(pageNumber-1)*pageSize;
@@ -54,6 +59,7 @@ public class ManagerController {
         return res;
     }
 
+    // 详细时间
     @GetMapping("/details")
     public List<String> details(@RequestParam("userId") Integer id){
         List<User> detail=managerService.details(id);
@@ -71,7 +77,8 @@ public class ManagerController {
         return times;
     }
 
-    @PostMapping("/search")//查找
+    // 查找用户
+    @PostMapping("/search")
     public Map<String,Object> searchByOption(@RequestBody Option option) {
         List<User> datas = managerService.searchByOption(option.getOptionSelect(), option.getOptionValue(),
                 (option.getPageNumber()-1)*option.getPageSize(),option.getPageSize());
@@ -82,12 +89,21 @@ public class ManagerController {
         return res;
     }
 
-    @PostMapping("/add")//新增
+    // 新增用户
+    @PostMapping("/add")
     public void addUser(@RequestBody User user){
-        managerService.addUser(user.getUsername(),user.getSex(),user.getPassword(),user.getNickname(),user.getEmail());
+        String username = user.getUsername();
+        if(userMapper.findByUserName(username) == null) {
+            managerService.addUser(user.getUsername(),user.getSex(),user.getPassword(),user.getNickname(),user.getEmail());
+        }
+        else {
+
+        }
+
     }
 
-    @PostMapping("/upload")//导入
+    // 导入文件
+    @PostMapping("/upload")
     public String fileUpload(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
             return "Failed to upload file: File is empty";
@@ -121,16 +137,19 @@ public class ManagerController {
         }
     }
 
+    // 编辑用户信息
     @PostMapping("/edit")
     public void editUser(@RequestBody User user){
         managerService.updateUser(user.getId(),user.getUsername(),user.getSex(),user.getPassword(),user.getNickname(),user.getEmail());
     }
 
+    // 删除用户
     @PostMapping("/delete")
     public void deleteUser(@RequestBody User user){
         managerService.deleteUser(user.getId());
     }
 
+    // 删除多用户
     @PostMapping("/deletes")
     public void deleteUsers(@RequestBody Users users){ // Users
 
@@ -139,5 +158,6 @@ public class ManagerController {
             managerService.deleteUser(id);
         }
     }
+
 
 }

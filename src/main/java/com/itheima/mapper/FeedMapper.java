@@ -12,7 +12,7 @@ public interface FeedMapper {
     @Select("select * from feeds where audit_status=1 ORDER BY create_time DESC")
     List<Feed> list();
 
-    @Select("select * from feeds where audit_status=1 and id=#{id} ")
+    @Select("select * from sys.feeds where audit_status=1 and id=#{id} ")
     Feed getById(Integer id);
 
 
@@ -53,4 +53,7 @@ public interface FeedMapper {
 
     @Update("update feeds set feed_view_count=feed_view_count+1 where id=#{id}")
     void addViewCount(Integer id);
+
+    @Select("select images from sys.feeds where id = #{id}")
+    String getFeedImage(Integer id);
 }

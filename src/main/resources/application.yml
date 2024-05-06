@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://c4380a167131.c.methodot.com:31643
+    url: jdbc:mysql://5223d8ab4c7a.c.methodot.com:31201
     username: root
     password: root
   data:

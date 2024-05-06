@@ -9,5 +9,7 @@ public interface CommentService {
 
     List<CommentVO> getFeedComments(Integer id);
 
+    List<Comment> getFeedCommentByTargetId(Integer id);
+
     List<CommentVO> getNewComments(Integer id);
 }

@@ -43,7 +43,7 @@ public interface ManagerMapper {
     int deleteUser(@Param("id") Integer id);
 
     @Select("select * from vue.news where title = #{title}")
-    int getNewsByTitle(String title);
+    New getNewsByTitle(String title);
 
     @Insert("insert into vue.news(title, subject, userid, image, create_time, content) " +
             "values (#{title}, #{subject}, #{userid}, #{image}, now(), #{content})")

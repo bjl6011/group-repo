@@ -15,8 +15,8 @@ public interface ArticleMapper {
 
     List<Article> list(Integer userId, String categoryId, String state);
 
-    @Update("update vue.article set title=#{title},content=#{content},cover_img=#{coverImg},state=#{state},category_id=#{categoryId},update_time=#{updateTime}" +
-            "where id=#{id}")
+    @Update("update vue.article set title=#{title},content=#{content}," +
+            "cover_img=#{coverImg},state=#{state},category_id=#{categoryId},update_time=#{updateTime} where id=#{id}")
     void update(Article article);
 
     @Select("select *from vue.article where id=#{id}")

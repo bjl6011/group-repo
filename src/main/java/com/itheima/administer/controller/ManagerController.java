@@ -202,6 +202,7 @@ public class ManagerController {
     @GetMapping("/imageUpload")
     public Result imageUpload(@RequestParam("file") MultipartFile file) throws Exception {
         return managerService.imageUpload(file);
+        // url
     }
 
 

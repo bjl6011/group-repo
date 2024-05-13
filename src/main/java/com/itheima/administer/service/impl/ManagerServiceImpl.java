@@ -82,14 +82,15 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     public Result addUser(String username, String gender, String password, String nickname, String email){
-        if(username.equals(userMapper.findByUserName(username).getUsername())) {
+        User user = userMapper.findByUserName(username);
+
+        if(user != null || username.equals(user.getUsername())) {
             return Result.error("该用户已存在！");
         }
         else {
             managerMapper.addUser(username,gender,password,nickname,email);
             return Result.success("用户添加成功！");
         }
-
     }
 
     public void importUser(String username, String gender, String password, String nickname, String email){
@@ -152,8 +153,8 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     public Result publishNews(New news) {
-        int newsCnt = managerMapper.getNewsByTitle(news.getTitle());
-        if( newsCnt > 0) {
+        New new1 =  managerMapper.getNewsByTitle(news.getTitle());
+        if( new1 != null) {
             return Result.error("该咨询已存在！");
         }
         else {

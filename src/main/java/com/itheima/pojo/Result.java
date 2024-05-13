@@ -20,6 +20,8 @@ public class Result<T> {
         return new Result<>(200, "操作成功", data);
     }
 
+    public static <E> Result<E> error(E data, String message) {return new Result(201, message, data);}
+
     //快速返回操作成功响应结果
     public static Result success() {
         return new Result(200, "操作成功", null);

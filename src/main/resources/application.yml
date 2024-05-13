@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://5223d8ab4c7a.c.methodot.com:31201
-    username: root
-    password: root
+    url: jdbc:mysql://47.101.164.115:3306
+    username: vue
+    password: 123456
   data:
     redis:
       host: localhost

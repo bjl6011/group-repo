@@ -14,7 +14,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     public void addInterceptors(InterceptorRegistry registry) {
         //登录和注册接口不拦截
-        registry.addInterceptor(loginInterceptor).excludePathPatterns("/user/login",
+        registry.addInterceptor(loginInterceptor).excludePathPatterns(
+                "/user/login",
                 "/user/register",
                 "/user/token",
                 "/advertisingspace",
@@ -23,6 +24,17 @@ public class WebConfig implements WebMvcConfigurer {
                 "/manager/details",
                 "/manager/search",
                 "/manager/add",
-                "/user/msg");
+                "/user/msg",
+                "/manager/updateNews",
+                "/manager/deleteNews",
+                "/manager/publishNews",
+                "/manager/getUnauditedFeeds",
+                "/manager/updateFeedAudit",
+                "/manager/getFeedsByAuditStatus",
+                "/manager/getFeedById",
+                "/manager/deleteFeedById",
+                "/manager/getUnauditFeeds",
+                "/manager/getAuditFeeds"
+        );
     }
 }

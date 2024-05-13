@@ -28,6 +28,7 @@ public class FeedServiceImpl implements FeedService {
 
     @Override
     public List<FeedVO> list() {
+
         Map<String,Object> map= ThreadLocalUtil.get();
         Integer userId= (Integer) map.get("id");
 

@@ -1,6 +1,8 @@
-package com.itheima.mapper;
+package com.itheima.administer.mapper;
 
-import com.itheima.pojo.Manager;
+import com.itheima.administer.pojo.Manager;
+import com.itheima.pojo.Feed;
+import com.itheima.pojo.New;
 import com.itheima.pojo.User;
 import org.apache.ibatis.annotations.*;
 
@@ -16,9 +18,6 @@ public interface ManagerMapper {
 
     @Select("select count(*) from sys.user;")
     Integer totalNum();
-
-    @Select("select * from sys.user where id =#{id}")
-    List<User> detailUserMsg(@Param("id") Integer id);
 
     @Select("select * from sys.user where ${optionSelect} = #{optionValue} limit #{pageNumber},#{pageSize}")//按查找项查找
     List<User> searchByOption(@Param("optionSelect") String optionSelect, @Param("optionValue") Object optionValue,
@@ -37,11 +36,28 @@ public interface ManagerMapper {
                     @Param("nickname") String nickname, @Param("email") String email);
 
     @Update("update sys.user set username = #{username},sex = #{sex}, password = #{password}, nickname = #{nickname}, email = #{email} ,update_time=now() where id = #{id}")
-    void updateUser(@Param("id") Integer id, @Param("username") String username, @Param("sex")String sex, @Param("password") String password,
+    int updateUser(@Param("id") Integer id, @Param("username") String username, @Param("sex")String sex, @Param("password") String password,
                     @Param("nickname") String nickname, @Param("email") String email);
 
     @Update("delete from sys.user where id = #{id}")
-    void deleteUser(@Param("id") Integer id);
+    int deleteUser(@Param("id") Integer id);
 
+    @Select("select * from sys.news where title = #{title}")
+    int getNewsByTitle(String title);
 
+    @Insert("insert into vue.news(title, subject, userid, image, create_time, content) " +
+            "values (#{title}, #{subject}, #{userid}, #{image}, now(), #{content})")
+    int publishNews(New news);
+
+    @Select("select * from vue.feeds where audit_status = #{auditStatus}")
+    List<Feed> getFeedsByAuditStatus(int auditStatus);
+
+    @Update("update vue.feeds set audit_status = 1 where id = #{id} and audit_status = 0")
+    int updateFeedAudit(int id);
+
+    @Delete("delete from vue.feeds where id = #{id}")
+    int deleteFeed(int id);
+
+    @Select("select * from vue.feeds where id = #{id}")
+    Feed getFeedById(int id);
 }

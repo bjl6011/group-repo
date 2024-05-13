@@ -11,7 +11,7 @@ public interface NewMapper {
     @Select("select *from news")
     List<New> list();
 
-    @Select("select *from news where id=#{id}")
+    @Select("select *from sys.news where id=#{id}")
     New findById(Integer id);
 
     @Select("select sum(id) from comment where commentable_id=#{id} and commentable_type='new' ")
@@ -39,4 +39,13 @@ public interface NewMapper {
 
     @Update("update news set comment_count=comment_count+1 where id=#{id}")
     void addComment(Integer id);
+
+    @Update("update sys.news " +
+            "set title = #{title}, subject = #{subject}, content = #{content}, image = #{image} " +
+            "where id = #{id}")
+    int updateNews(int id, String title, String subject, String content, String image);
+
+    @Delete("delete from sys.news where id = #{id}")
+    int deleteNews(int id);
+
 }

@@ -12,12 +12,12 @@ public class NewVO {
     int id;
     @NotNull
     private String title;
-    private String subject;
+    private String subject; //
     private String content;
-    private User user;
+    private User user; //
     int hit;//点击量
-    Integer likeCount;
+    Integer likeCount; // 点赞数
     private Integer commentCount;
-    private String cover;
+    private String cover; //封面
     private String createTime;
 }

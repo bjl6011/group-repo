@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface AdvertiseMapper {
 
-    @Select("select * from advertise where id=#{id}")
+    @Select("select * from vue.advertise where id=#{id}")
     Advertise getAdvert(Integer id);
 }

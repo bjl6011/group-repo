@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface NewMapper {
-    @Select("select *from news")
+    @Select("select *from vue.news")
     List<New> list();
 
     @Select("select *from vue.news where id=#{id}")
